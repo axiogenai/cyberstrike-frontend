@@ -79,10 +79,19 @@ function initAttackSelector() {
             const t = item.dataset.attack;
             if (typeInput) typeInput.value = t;
 
+            
             if (bruteBox)  bruteBox.style.display  = t === 'brute' ? 'block' : 'none';
             if (portBox)   portBox.style.display    = t === 'port'  ? 'block' : 'none';
-            if (intGrp)    intGrp.style.display     = t === 'port'  ? 'none'  : 'block';
-            if (thrdGrp)   thrdGrp.style.display    = t === 'port'  ? 'none'  : 'block';
+            
+            // For DDoS, Slowloris, Brute: Show both Intensity and Threads
+            // For other vulnerabilities (SQL, XSS, CSRF, IDOR, etc.): Hide Intensity and Threads
+            // For Port scan: Hide Intensity and Threads
+            
+            const showBoth = ['ddos', 'slowloris', 'brute'].includes(t);
+            
+            if (intGrp)    intGrp.style.display     = showBoth ? 'block'  : 'none';
+            if (thrdGrp)   thrdGrp.style.display    = showBoth ? 'block'  : 'none';
+
         });
     });
 }
