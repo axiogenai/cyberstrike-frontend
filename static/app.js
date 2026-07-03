@@ -165,7 +165,6 @@ function addVuln(v) {
         ${v.evidence ? `<p><strong>Evidence:</strong> ${v.evidence}</p>` : ''}
     `;
     box.insertBefore(d, box.firstChild);
-    addLog(`Vulnerability found: ${v.type} @ ${v.url}`, 'error');
 }
 
 // ── History entry ──────────────────────────────────────────────────
