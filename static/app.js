@@ -177,7 +177,7 @@ function addVuln(v) {
     
     let evidenceHTML = '';
     if (v.evidence) {
-        const ev = v.evidence.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const ev = String(v.evidence).replace(/</g, '&lt;').replace(/>/g, '&gt;');
         evidenceHTML = `<div style="margin-top:12px;padding:10px;background:rgba(0,0,0,0.3);border-radius:4px;border-left:3px solid var(--danger);font-family:var(--mono);font-size:0.75rem;color:#f0a3a3;overflow-x:auto;"><strong>Proof / Evidence:</strong><br><br>${ev}</div>`;
     }
 
@@ -193,7 +193,7 @@ function addVuln(v) {
                 <strong>Target:</strong> <span style="font-family:var(--mono);color:var(--primary)">${v.url || '-'}</span>
             </p>
             
-            ${v.payload ? `<p style="margin:0;font-size:0.85rem;color:var(--t2)"><i class="fas fa-biohazard" style="color:var(--t3);margin-right:6px"></i><strong>Payload:</strong> <code style="margin-left:4px;color:#c97a7e">${v.payload.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></p>` : ''}
+            ${v.payload ? `<p style="margin:0;font-size:0.85rem;color:var(--t2)"><i class="fas fa-biohazard" style="color:var(--t3);margin-right:6px"></i><strong>Payload:</strong> <code style="margin-left:4px;color:#c97a7e">${String(v.payload).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></p>` : ''}
             
             ${detailHTML}
             ${evidenceHTML}
