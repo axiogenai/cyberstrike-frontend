@@ -88,9 +88,13 @@ function initAttackSelector() {
             // For Port scan: Hide Intensity and Threads
             
             const showBoth = ['ddos', 'slowloris', 'brute'].includes(t);
+            const hideDuration = ['sql', 'xss', 'csrf', 'idor', 'redirect', 'header_inj', 'cmd', 'ssrf', 'xxe', 'traversal', 'port'].includes(t);
             
             if (intGrp)    intGrp.style.display     = showBoth ? 'block'  : 'none';
             if (thrdGrp)   thrdGrp.style.display    = showBoth ? 'block'  : 'none';
+            
+            const durGrp = el('duration-input')?.closest('.field');
+            if (durGrp) durGrp.style.display = hideDuration ? 'none' : 'block';
 
         });
     });
