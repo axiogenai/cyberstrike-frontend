@@ -87,7 +87,31 @@ function initAttackSelector() {
             // For other vulnerabilities (SQL, XSS, CSRF, IDOR, etc.): Hide Intensity and Threads
             // For Port scan: Hide Intensity and Threads
             
+            
             const showBoth = ['ddos', 'slowloris', 'brute'].includes(t);
+            const hideDuration = ['sql', 'xss', 'csrf', 'idor', 'redirect', 'header_inj', 'cmd', 'ssrf', 'xxe', 'traversal', 'port'].includes(t);
+
+            if (intGrp)    intGrp.style.display     = showBoth ? 'block'  : 'none';
+            if (thrdGrp)   thrdGrp.style.display    = showBoth ? 'block'  : 'none';
+            
+            const durGrp = el('duration-input')?.closest('.field');
+            if (durGrp) durGrp.style.display = hideDuration ? 'none' : 'block';
+
+            // Advanced Pro Fields
+            const sqlFields = el('sql-fields');
+            const xssFields = el('xss-fields');
+            const cmdFields = el('cmd-fields');
+            const ssrfFields = el('ssrf-fields');
+            const xxeFields = el('xxe-fields');
+            const travFields = el('traversal-fields');
+
+            if (sqlFields) sqlFields.style.display = (t === 'sql') ? 'block' : 'none';
+            if (xssFields) xssFields.style.display = (t === 'xss') ? 'block' : 'none';
+            if (cmdFields) cmdFields.style.display = (t === 'cmd') ? 'block' : 'none';
+            if (ssrfFields) ssrfFields.style.display = (t === 'ssrf') ? 'block' : 'none';
+            if (xxeFields) xxeFields.style.display = (t === 'xxe') ? 'block' : 'none';
+            if (travFields) travFields.style.display = (t === 'traversal') ? 'block' : 'none';
+
             const hideDuration = ['sql', 'xss', 'csrf', 'idor', 'redirect', 'header_inj', 'cmd', 'ssrf', 'xxe', 'traversal', 'port'].includes(t);
             
             if (intGrp)    intGrp.style.display     = showBoth ? 'block'  : 'none';
